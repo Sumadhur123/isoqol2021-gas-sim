@@ -9,7 +9,8 @@ source("R/fit.R")
 source("R/summarize.R")
 source("R/utils.R")
 
-tar_option_set(packages = c("tidyverse", "here", "gasr", "glue"))
+tar_option_set(packages = c("tidyverse", "here", "gasr", "glue", "ardea"))
+
 # Parallelize targets locally with the future package
 # https://books.ropensci.org/targets/hpc.html#future
 future::plan(callr)
