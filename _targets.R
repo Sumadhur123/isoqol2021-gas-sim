@@ -7,9 +7,14 @@ library(future.callr)
 source("R/simulate.R")
 source("R/fit.R")
 source("R/summarize.R")
+source("R/visualize.R")
 source("R/utils.R")
 
-tar_option_set(packages = c("tidyverse", "here", "gasr", "glue", "ardea"))
+tar_option_set(packages = c("tidyverse", "here", "gasr", "glue", "ardea",
+                            "ggtext"))
+
+# Load the Arial font for Ardea themed plots
+extrafont::loadfonts(device = "win", quiet = TRUE)
 
 # Parallelize targets locally with the future package
 # https://books.ropensci.org/targets/hpc.html#future
@@ -24,8 +29,8 @@ models_dir <- file.path(project_dir, "models")
 results_dir <- file.path(project_dir, "results")
 
 # Define the simulation parameters
-n_subjects <- c(40, 50, 60, 70, 80)
-delta <- c(0.4, 0.6, 0.8)
+n_subjects <- c(40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150)
+delta <- c(0.2, 0.3, 0.4, 0.5, 0.6, 0.8)
 n_goals <- c(1, 2, 3, 4, 5, 6, 7)
 n_sim <- 1e4
 
@@ -58,20 +63,70 @@ tar_mappings <-
     ),
     tar_target(
       sim_ttest_power,
-      summarize_power(sim_data_ttest,
-                      save_dir = results_dir)
+      calculate_power(sim_data_ttest)
+    ),
+    tar_target(
+      sim_effect_size,
+      summarize_effect_size(sim_data_ttest)
     )
   )
 
 # Define target combinations
-tar_combinations <- tar_combine(
-  ttest_power,
-  tar_mappings[[3]],
-  command = dplyr::bind_rows(!!!.x)
+tar_combinations <- list(
+  tar_combine(
+    ttest_power,
+    tar_mappings[[3]],
+    command = dplyr::bind_rows(!!!.x)
+  ),
+  tar_combine(
+    effect_size,
+    tar_mappings[[4]],
+    command = dplyr::bind_rows(!!!.x)
+  )
 )
 
 # Define the target pipeline to be executed
 list(
   tar_mappings,
-  tar_combinations
+  tar_combinations,
+
+  tar_target(
+    ttest_power_file,
+    save_ttest_power(ttest_power, save_dir = results_dir),
+    format = "file"
+  ),
+
+  tar_target(
+    effect_size_file,
+    save_effect_size(effect_size, save_dir = results_dir),
+    format = "file"
+  ),
+
+  tar_target(
+    ttest_power_diff,
+    calculate_power_diff(ttest_power, save_dir = results_dir)
+  ),
+
+  tar_target(
+    ttest_power_min_goals,
+    calculate_power_min_goals(ttest_power, save_dir = results_dir)
+  ),
+
+  tar_target(
+    ttest_power_diff_plot_n_goals123,
+    plot_power_n_subjects_n_goals_delta(ttest_power, ttest_power_diff,
+                                        plot_n_goals = c(1, 2, 3),
+                                        save_dir = results_dir)
+  ),
+  tar_target(
+    ttest_power_diff_plot_n_goals1234,
+    plot_power_n_subjects_n_goals_delta(ttest_power, ttest_power_diff,
+                                        plot_n_goals = c(1, 2, 3, 4),
+                                        save_dir = results_dir),
+  ),
+
+  tar_target(
+    effect_size_plot,
+    plot_effect_size(effect_size),
+  )
 )
