@@ -1,0 +1,125 @@
+---
+title: "ISOQOL 2021: minimum number of goals in GAS"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(here)
+```
+
+
+# Guidelines
+
+Deadline: April 16, 2021
+
+Notification: June 7, 2021 -> confirm by June 14
+
+Registration deadline: August 2, 2021
+
+Posters due: October 4, 2021
+
+Conference: October 13-16
+
+Presenter restrictions: a maximum of two abstracts may be selected by any one presenting authors. Only one oral presentation per presenting author. 
+
+Abstract categories:
+
+* **Theoretical work**
+    * Abstracts in this category use theory to advance the understanding of HRQL
+phenomena. Such work might include novel efforts to explain known associations or
+relationships observed in the literature; modifications or extensions to theories that
+are routinely or historically used in HRQL research and applications; or applications
+of an established theory from another field to HRQL phenomena. Abstracts in this
+category should not be presenting new data (including qualitative or formative
+work) or meta-analyses, but may reference published data in support of a theory.
+* Methodological
+    * Work in this category reports on qualitative or quantitative methods for developing
+and evaluating patient-reported health status, as well as methods for analyzing and
+interpreting scores from such measures of health assessments. While the work
+might feature a particular disease area or measure, the primary aim of the work is to
+present a method rather than present findings about a particular measure or
+population.
+* Application: Clinical Research
+    * Abstracts in this category use patient-centered measures to better understand the
+nature, prevention, treatment and management of different health conditions.
+Approaches used in this category could include qualitative or quantitative,
+randomized or non-randomized, cross-sectional or longitudinal, and meta-analyses.
+* Application: Clinical Care Applications
+    * Abstracts in this category include reports of efforts to integrate the patient’s voice
+more effectively into clinical encounters. Examples include descriptions of
+experiences implementing a standardized PRO collection system in a single clinic,
+reports of the development of a streamlined questionnaire battery for patients to
+complete prior to visits, and efforts to develop better reports for clinicians of
+patients’ PRO data over time. It is expected that abstracts in this category are more
+descriptive in nature with limited sample sizes. Larger and/or randomized studies
+should be categorized as Clinical Research.
+* Application: Policy
+    * Abstracts in this category focus on issues relevant to the requirement, development
+and large-scale (e.g., Health System, Government) application of patient-reported
+outcomes in health care practice, regulatory, and population/surveillance settings.
+Abstracts may include program evaluation, case studies and economic analyses.
+
+Abstract submissions should have the following sections: Aims, Methods, Results Conclusions for a **combined word count of 350 or fewer**.
+Optional: up to three supporting files (JPG preferred)
+
+Abstract title should be 10-250 characters in sentence case.
+
+Health condition (must select 1 or 2)
+
+* Cancer 	
+* Cardiology
+* Endocrinology/Diabetes/Obesity
+* Mental Health
+* Musculoskeletal/Rheumatic
+* Nephrology/Urology
+* Neurological
+* Rehabilitation
+* Respiratory
+* **Other Health Condition**
+
+Population (must select 1 or 2):
+
+* Children and Adolescents 	
+* Older People
+* Caregivers and Relatives
+* Cultural and Ethnic Minorities
+* Vulnerable Populations
+* **General Populations**
+* Other Populations 
+
+# Abstract
+
+Title: Minimum number of goals per subject in goal attainment scaling trials: a simulation study.
+
+Authors: Taylor, Justin, Kari, Sanja, Susan, Ken
+
+## Aims
+
+Goal attainment scaling (GAS) is a patient-centric outcome measure that captures meaningful change through personally identified goals of treatment.
+Traditionally, it is recommended to set a minimum of three goals per subject in a clinical trial.
+Depending on the subject population and time constraints, however, it may not be feasible to reach this minimum number.
+Our aim was to investigate the effect of number of goals per subject on statistical power using data simulation techniques.
+
+## Methods
+
+We employed a probabilistic model introduced by Urach et al. (2019) for generating randomized parallel group GAS endpoint data.
+This model allows for adjustment of many study parameters, but for this analysis we varied only the total number of subjects $m$ (from 20 to 100), treatment effect size $\delta$ (from 0.4 to 0.8), and the parameter of interest: number of goals per subject $n$ (from 1 to 7).
+For each set of parameters, 1000 parallel group trials were simulated and a two-sided $t$-test was performed on standardized T-scores.
+Power was computed as the percentage of simulations detecting a statistically significant treatment effect at $\alpha$ = 0.05.
+
+## Results
+
+<!-- For moderate-large effect sizes of $\delta$ = 0.4, 0.6, 0.8, and sample sizes of $m$ = 40, 60, 80, -->
+The gain in statistical power ranged from 8-20% for 2 goals per subject, compared to 1 goal per subject.
+The difference between 3 and 2 goals per subject was less pronounced, with power increases ranging from 2-11%.
+This pattern of diminishing returns continued for more than 3 goals, e.g. 0-8% gains from 4 vs 3 goals per subject.
+With 3 goals per subject, the minimum sample size required to reach 80% was found to be >100, 60 ,and 40 subjects for effect sizes $\delta$ = 0.4, 0.6, and 0.8 respectively.
+
+## Conclusions
+
+The power to detect a treatment effect increased with increasing number of goals per subject.
+The gains in power had diminishing returns, however, with the most substantial increase from 1 to 2 goals per subject.
+For the moderate-large effect sizes considered here, the traditional 3 goal minimum reached 80% power with sample sizes ranging from 40 to 100+ subjects.
