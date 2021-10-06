@@ -31,7 +31,7 @@ This project uses three key packages:
     * Manages project-local R dependencies
     * The packages and versions used for this project are listed in the `renv.lock` file
     * To restore the project dependencies from the lockfile, run `renv::restore()`
-    * To use new packages/versions, run `renv::snapshot()` to overwrite the exisitng lockfile
+    * To use new packages/versions, run `renv::snapshot()` to overwrite the existing lockfile
 * `targets`
     * A toolkit for reproducible project workflows
     * Saves a lot of time on computation by skipping up-to-date tasks
@@ -39,7 +39,7 @@ This project uses three key packages:
     * The key file is `_targets.R` which lists every step in the analysis pipeline
         * To get it working on your machine, the `project_dir` variable will likely need to be changed -- choose somewhere with lots of storage, as the size of all the raw data was 40-50 GB
         * `tar_make()` runs the pipeline from starts to finish, but *will take forever to run* due to the number of parameters being simulated (every combination of `n_subjects`, `n_goals`, `delta`, is run `n_sim` times) so I recommend reducing these parameters as a first test run
-        * To speed up the simulations drastically, take advantage of parallel processing with the `tar_make_future(workers = 8)`, with the `workers` argument set to the number of processor cores to use
+        * To speed up the simulations drastically, take advantage of parallel processing with the `tar_make_future(workers = 8)`, with the `workers` argument set to the number of processor cores you want to use
     * After running the pipeline, objects are accessed with the `tar_load()` function
         * For example, execute `tar_load(ttest_power_diff_plot_n_goals1234)` to load the figure of power vs number of subjects for 1-4 goals per subject
 * `gasr`
