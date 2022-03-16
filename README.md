@@ -38,7 +38,7 @@ This project uses three key packages:
     * Read more about `targets` here: https://books.ropensci.org/targets/
     * The key file is `_targets.R` which lists every step in the analysis pipeline
         * To get it working on your machine, the `project_dir` variable will likely need to be changed -- choose somewhere with lots of storage, as the size of all the raw data was 40-50 GB
-        * `tar_make()` runs the pipeline from starts to finish, but *will take forever to run* due to the number of parameters being simulated (every combination of `n_subjects`, `n_goals`, `delta`, is run `n_sim` times) so I recommend reducing these parameters as a first test run
+        * `tar_make()` runs the pipeline from starts to finish, but *will take forever to run* due to the number of parameters being simulated (every combination of `n_subjects`, `n_goals`, `delta`, is run `n_sim` times) so I recommend editing the list of parameters to simulate fewer values
         * To speed up the simulations drastically, take advantage of parallel processing with the `tar_make_future(workers = 8)`, with the `workers` argument set to the number of processor cores you want to use
     * After running the pipeline, objects are accessed with the `tar_load()` function
         * For example, execute `tar_load(ttest_power_diff_plot_n_goals1234)` to load the figure of power vs number of subjects for 1-4 goals per subject
